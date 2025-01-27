@@ -1,15 +1,19 @@
-import { View, StyleSheet, Image, ActivityIndicator } from "react-native";
+import { View, StyleSheet, Image, ActivityIndicator, TouchableOpacity, Text } from "react-native"
+import { useState } from "react"
+import { useRouter } from "expo-router"
 import { Controller, set, useForm,  } from "react-hook-form"
-import { z } from 'zod';
+import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useRouter } from "expo-router";
-import { ILoginRequest, ILoginResponse } from "./Interfaces/ILogin";
-import { InputComponent } from "./Components/InputComponent";
-import { ButtonComponent } from "./Components/ButtonComponent";
-import { authService } from "./Services/authService";
-import { ToastrComponent, ToastType } from "./Components/ToastrComponet";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import AntDesign from '@expo/vector-icons/AntDesign'
+import { ILoginRequest, ILoginResponse } from "./Interfaces/ILogin"
+import { InputComponent } from "./Components/InputComponent"
+import { ButtonComponent } from "./Components/ButtonComponent"
+import { authService } from "./Services/authService"
+import { ToastrComponent, ToastType } from "./Components/ToastrComponet"
+import { HeaderComponents } from "./Components/HeaderComponent"
+
+
 
 export default function Create() {
 
@@ -21,11 +25,7 @@ export default function Create() {
         container: {
           flex: 1,
         },
-        header: {
-            backgroundColor: '#3629b7',
-            width: '100%',
-            height: 200
-        },
+        
         body:{
             borderRadius: 20,
             backgroundColor: 'white',
@@ -56,29 +56,32 @@ export default function Create() {
             if(status === 201){
                 const res: ILoginResponse = data
                 await AsyncStorage.setItem('token', res.access_token)
-                    router.replace("/Home")
+                    router.replace("/home")
                 setLoading(true)
                 return
             }
 
             setLoading(false)
             setToast(false)
+
         } catch (error ) {
+
             if(error instanceof Error){
                 setLoading(true)
                 setToast(true)
             }
+
         }
     }
 
-
+    function handleUserCreate(){
+        router.replace("/user.create")
+    }
 
     return (
         <View style={styles.container}>
             {toast? <ToastrComponent message="email ou senha incorreto." type={ToastType.error}/> : null}
-            <View style={styles.header}>
-            
-            </View>
+            <HeaderComponents onPress={handleUserCreate} titleButtom="Cadastre-se"/>
             <View style={styles.body}>
                 <Controller
                     control={control}
