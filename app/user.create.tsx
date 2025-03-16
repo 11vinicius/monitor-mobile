@@ -47,6 +47,7 @@ export default function UserCreate() {
     }
 
     function handleLogin() {
+        router.replace("/Login")
     }
 
     return (
@@ -64,7 +65,7 @@ export default function UserCreate() {
                     name="name"
                     defaultValue='vinicius'
                     render={({ field: { onChange, value } } ) => 
-                        <InputComponent disable={loading} value={value} placeholder="Nome" error={errors.name?.message? String(errors.name?.message) :null} onchangeText={onChange} />
+                        <InputComponent isLoading={loading} value={value} placeholder="Nome" error={errors.name?.message? String(errors.name?.message) :null} onchangeText={onChange} />
                     }
                 />
                  <Controller
@@ -72,7 +73,7 @@ export default function UserCreate() {
                     name="email"
                     defaultValue='vini123@gmail.com'
                     render={({ field: { onChange, value } } ) => 
-                        <InputComponent disable={loading} value={value} placeholder="E-mail" error={errors.email?.message? String(errors.email?.message) :null} onchangeText={onChange} />
+                        <InputComponent isLoading={loading} value={value} placeholder="E-mail" error={errors.email?.message? String(errors.email?.message) :null} onchangeText={onChange} />
                     }
                 />
                  <Controller
@@ -80,7 +81,7 @@ export default function UserCreate() {
                     name="password"
                     defaultValue='876543211'
                     render={({ field: { onChange, value } } ) => 
-                        <InputComponent disable={loading} value={value} placeholder="Senha" error={errors.password?.message? String(errors.password?.message) :null} onchangeText={onChange} />
+                        <InputComponent isLoading={loading} value={value} placeholder="Senha" error={errors.password?.message? String(errors.password?.message) :null} onchangeText={onChange} />
                     }
                 />
                 <ButtonComponent isLoading={loading} title="Entrar"  onPress={handleSubmit(onSubmit)}/>

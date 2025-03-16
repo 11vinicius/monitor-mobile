@@ -10,8 +10,8 @@ function ButtonComponent(props: IButtonComponent) {
     const styles = StyleSheet.create({
         container: {
             backgroundColor: props.isLoading? '#3629b7' : '#564eb2',
+            paddingVertical: 14,
             borderRadius: 10,
-            height: 40,
             justifyContent: 'center',
             alignItems: 'center',
             margin: 6
@@ -27,8 +27,8 @@ function ButtonComponent(props: IButtonComponent) {
             <View style={styles.container}>
                 {
                 props.isLoading? 
-                    <Text style={styles.title}>{props.title}</Text>:
-                    <ActivityIndicator color={'#fff'}/>
+                    <ActivityIndicator color={'#fff'}/>:
+                    <Text style={styles.title}>{props.title}</Text>
                 }
 
             </View>

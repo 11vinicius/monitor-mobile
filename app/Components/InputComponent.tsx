@@ -6,7 +6,7 @@ interface IInputComponent{
     placeholder: string
     onchangeText: (text: string) => void
     value?: string
-    disable: boolean
+    isLoading: boolean
     error?: string | null
     secureTextEntry?: boolean
     isButtonInObscure?: boolean
@@ -23,7 +23,7 @@ function InputComponent(props: IInputComponent) {
         inputArea:{
             padding: 8,
             borderRadius: 10,
-            fontSize: 20,
+            fontSize: 24,
             flexDirection: 'row',
             justifyContent: 'space-between',
             backgroundColor: '#ffffff',
@@ -32,7 +32,7 @@ function InputComponent(props: IInputComponent) {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             elevation: 5,
-            height: 40
+            height: 50
         },
         input:{
             flex:1
@@ -56,7 +56,7 @@ function InputComponent(props: IInputComponent) {
         <View style={styles.constainer}>
             <View style={[styles.inputArea, focus? styles.focusInput : null, props.error? styles.errorInput:null]}>
                 <TextInput 
-                    editable={props.disable}
+                    editable={props.isLoading? false : true}
                     style={styles.input}
                     onChangeText={props.onchangeText}
                     value={props.value} 

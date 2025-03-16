@@ -8,7 +8,7 @@ export default function Index() {
 
   useEffect(() => {
     function redirect() {
-      setTimeout(() => router.replace("/auth.login")
+      setTimeout(() => router.replace("/Login")
         //  setTimeout(() => router.replace("/user.create")
       , 100);
     }
@@ -26,7 +26,7 @@ export default function Index() {
     >
       <Text>Edit app/index.tsx to edit this screen.</Text>
 
-      <TouchableOpacity onPress={() => router.replace("/auth.login")}>
+      <TouchableOpacity onPress={() => router.replace("/Login")}>
         <Text>Ir para Login</Text>
       </TouchableOpacity>
 

@@ -1,13 +1,11 @@
-import { AxiosResponse } from "axios";
-import { ILoginRequest, ILoginResponse } from "../Interfaces/auth/ILogin"
 import { baseService } from "./baseService"
+import { ILoginForm } from "@/Interfaces/AuthInterfaces";
 
 export const authService = ()=>{
-
-    async function signIn(login: ILoginRequest):Promise<AxiosResponse<ILoginResponse>> {
-        return await baseService.post('/auth', login);
+    async function signIn(login: ILoginForm) {
+        return await baseService.post('/signIn', login);
     }
-
+    
     return{
         signIn
     }

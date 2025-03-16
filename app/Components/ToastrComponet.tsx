@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 
-
-export enum ToastType {
-    success = 'success',
-    error = 'error',
-    warning = 'warning'
-}
-
 interface ToastrProps {
     message: string;
-    type:  ToastType 
+    color: string;
+    textColor: string; 
 }
 
 function ToastrComponent (props: ToastrProps) {
-  const [fadeAnim] = useState(new Animated.Value(0)); 
-
   const styles = StyleSheet.create({
     container: {
-      position: "absolute",
-      top: 50,
-      left: 20,
+      position: 'absolute',
+      bottom: 50,
+      width: '90%',
+      left: '10%',
+      right: '10%',
       padding: 15,
       borderRadius: 8,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
+      backgroundColor: props.color,
+      color: props.textColor,
       elevation: 5,
       zIndex: 1,
     },
@@ -47,34 +43,28 @@ function ToastrComponent (props: ToastrProps) {
   });
   
   
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
+  // useEffect(() => {
+  //   Animated.timing(fadeAnim, {
+  //     toValue: 1,
+  //     duration: 300,
+  //     useNativeDriver: true,
+  //   }).start();
 
-    const timer = setTimeout(() => {
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }, 3000);
+  //   const timer = setTimeout(() => {
+  //     Animated.timing(fadeAnim, {
+  //       toValue: 0,
+  //       duration: 300,
+  //       useNativeDriver: true,
+  //     }).start();
+  //   }, 3000);
 
-    return () => clearTimeout(timer); 
-  }, [fadeAnim]);
-
-  const backgroundColor  = {
-    success: "#4CAF50",
-    error: "#F44336",
-    warning: "#FFC107",
-  }[props.type];
+  //   return () => clearTimeout(timer); 
+  // }, [fadeAnim]);
 
   return (
-    <Animated.View style={[styles.container, { opacity: fadeAnim, backgroundColor }]}>
+    <View style={styles.container}>
       <Text style={styles.message}>{props.message}</Text>
-    </Animated.View>
+    </View>
   );
 };
 
