@@ -13,7 +13,7 @@ interface ToastrProps {
     type:  ToastType 
 }
 
-export function ToastrComponent (props: ToastrProps) {
+function ToastrComponent (props: ToastrProps) {
   const [fadeAnim] = useState(new Animated.Value(0)); 
 
   const styles = StyleSheet.create({
@@ -77,4 +77,6 @@ export function ToastrComponent (props: ToastrProps) {
     </Animated.View>
   );
 };
+
+export default ToastrComponent
 

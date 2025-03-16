@@ -1,5 +1,5 @@
-import { Axios, AxiosResponse } from "axios";
-import { ILoginRequest, ILoginResponse } from "../../Interfaces/ILogin"
+import { AxiosResponse } from "axios";
+import { ILoginRequest, ILoginResponse } from "../Interfaces/auth/ILogin"
 import { baseService } from "./baseService"
 
 export const authService = ()=>{

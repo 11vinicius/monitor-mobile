@@ -7,8 +7,7 @@ interface HeaderComponentsProps {
     icon:  React.ReactNode
 }
 
-export function HeaderComponents({ titleButtom, icon, onPress }:HeaderComponentsProps) {
-
+function HeaderComponents({ titleButtom, icon, onPress }:HeaderComponentsProps) {
 
     const styles = StyleSheet.create({
         header: {
@@ -48,3 +47,5 @@ export function HeaderComponents({ titleButtom, icon, onPress }:HeaderComponents
         </View>
     )
 }
+
+export default HeaderComponents

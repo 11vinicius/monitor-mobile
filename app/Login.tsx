@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, ActivityIndicator, TouchableOpacity, Text } from "react-native"
+import { View, StyleSheet,  } from "react-native"
 import { useState } from "react"
 import { useRouter } from "expo-router"
 import { Controller,  useForm,  } from "react-hook-form"
@@ -6,27 +6,15 @@ import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { ILoginRequest, ILoginResponse } from "../Interfaces/ILogin"
-import { InputComponent } from "./Components/InputComponent"
+import { ILoginRequest, ILoginResponse } from "../Interfaces/auth/ILogin"
+import  InputComponent  from "./Components/InputComponent"
 import  ButtonComponent  from "./Components/ButtonComponent"
-import { authService } from "./Services/authService"
-import { ToastrComponent, ToastType } from "./Components/ToastrComponet"
-import { HeaderComponents } from "./Components/HeaderComponent"
+import { authService } from "../Services/authService"
+import  HeaderComponents  from "./Components/HeaderComponent"
 
 export default function Create() {
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-        },
-        
-        body:{
-            borderRadius: 20,
-            backgroundColor: 'white',
-            padding: 20,
-            flex: 1,
-        }
-    });
+ 
 
 
     const [loading, setLoading] = useState<boolean>(true)
@@ -45,29 +33,7 @@ export default function Create() {
     const { signIn } = authService()
 
     async function onSubmit(body: ILoginRequest) {
-        setLoading(false)
-        setToast(false)
-        try {
-            const  {data, status } = await signIn(body)
-            if(status === 201){
-                const res: ILoginResponse = data
-                await AsyncStorage.setItem('token', res.access_token)
-                    router.replace("/home")
-                setLoading(true)
-                return
-            }
-
-            setLoading(false)
-            setToast(false)
-
-        } catch (error ) {
-
-            if(error instanceof Error){
-                setLoading(true)
-                setToast(true)
-            }
-
-        }
+       
     }
 
     function handleUserCreate(){
@@ -76,7 +42,7 @@ export default function Create() {
 
     return (
         <View style={styles.container}>
-            {toast? <ToastrComponent message="email ou senha incorreto." type={ToastType.error}/> : null}
+            {/* {toast? <ToastrComponent message="email ou senha incorreto." type={ToastType.error}/> : null} */}
             <HeaderComponents 
                 icon={
                     <AntDesign name="adduser" size={24} color="#3629b7" />
@@ -107,3 +73,15 @@ export default function Create() {
         </View> 
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    body:{
+        borderRadius: 20,
+        backgroundColor: 'white',
+        padding: 20,
+        flex: 1,
+    }
+});

@@ -12,7 +12,7 @@ interface IInputComponent{
     isButtonInObscure?: boolean
 }
 
-export function InputComponent(props: IInputComponent) {
+function InputComponent(props: IInputComponent) {
     const [focus, setFocus] = useState<boolean>(false)
     const [obscure, setObscure] = useState<boolean>(props.secureTextEntry? true : false)
 
@@ -78,3 +78,5 @@ export function InputComponent(props: IInputComponent) {
         </View>
     )
 }
+
+export default InputComponent   
