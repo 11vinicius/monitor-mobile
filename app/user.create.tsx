@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
-import  HeaderComponents  from "./Components/HeaderComponent";
+import  HeaderComponents  from "../components/HeaderComponent";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import { z } from 'zod'
 import { Controller,  useForm,  } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IUser } from "../Interfaces/IUser";
-import InputComponent  from "./Components/InputComponent";
+import InputComponent  from "../components/InputComponent";
 import { useState } from "react";
-import  ButtonComponent  from "./Components/ButtonComponent";
+import  ButtonComponent  from "../components/ButtonComponent";
 import { userService } from "../Services/userService";
 
 export default function UserCreate() {

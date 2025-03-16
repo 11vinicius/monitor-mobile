@@ -5,11 +5,11 @@ import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { ILoginForm } from "../Interfaces/AuthInterfaces"
-import  InputComponent  from "./Components/InputComponent"
-import  ButtonComponent  from "./Components/ButtonComponent"
-import  HeaderComponents  from "./Components/HeaderComponent"
+import  InputComponent  from "../components/InputComponent"
+import  ButtonComponent  from "../components/ButtonComponent"
+import  HeaderComponents  from "../components/HeaderComponent"
 import { useAuthStore } from "@/stores/useAuthStore"
-import ToastrComponent from "./Components/ToastrComponet";
+import ToastrComponent from "../components/ToastrComponet";
 
 export default function Create() {
     const schema = z.object({
@@ -23,10 +23,6 @@ export default function Create() {
 
     const router = useRouter();
     const { loading, er, fetchToken } = useAuthStore()
-
-    async function onSubmit(body: ILoginForm) {
-        fetchToken(body)
-    }
 
     function handleUserCreate(){
         router.replace("/user.create")
@@ -45,7 +41,7 @@ export default function Create() {
                 <Controller
                     control={control}
                     name="email"
-                    defaultValue='vini2@gmail.com'
+                    defaultValue='vini@gmail.com'
                     render={({ field: { onChange, value } } ) => 
                         <InputComponent isLoading={loading} value={value} placeholder="Digite email" error={errors.email?.message? String(errors.email?.message) :null} onchangeText={onChange} />
                     }
@@ -58,7 +54,7 @@ export default function Create() {
                         <InputComponent isLoading={loading} value={value} placeholder="Digite password" error={errors.password?.message? String(errors.password?.message) :null} onchangeText={onChange} />
                     }
                 />
-                <ButtonComponent isLoading={loading} title="Entrar"  onPress={handleSubmit(onSubmit)}/>
+                <ButtonComponent isLoading={loading} title="Entrar"  onPress={handleSubmit(fetchToken)}/>
                 { er && <ToastrComponent message={er} color="#ff0000" textColor="#fff"/>}
             </View>
         </View> 

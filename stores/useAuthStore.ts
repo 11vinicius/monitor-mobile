@@ -11,9 +11,9 @@ export const useAuthStore = create<IAuthStore>((set) => ({
   fetchToken: async(body:ILoginForm) => {
     set({ loading: true, er: null})
     await authService().signIn(body).then(async(res) => {
-        console.log(res.data)
+
         await AsyncStorage.setItem('token', res.data.token);
-      set({ loading: false, er: null})
+      set({ loading: false, er: null, token: res.data.token})
     })
     .catch((err: AxiosError) => {
       if(err.response?.status === 401){

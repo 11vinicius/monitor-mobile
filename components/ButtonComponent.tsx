@@ -9,7 +9,7 @@ function ButtonComponent(props: IButtonComponent) {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: props.isLoading? '#3629b7' : '#564eb2',
+            backgroundColor: props.isLoading? '#564eb2' : '#3629b7',
             paddingVertical: 14,
             borderRadius: 10,
             justifyContent: 'center',
