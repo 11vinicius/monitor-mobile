@@ -4,9 +4,10 @@ import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 interface HeaderComponentsProps {
     onPress: () => void
     titleButtom: string
+    icon:  React.ReactNode
 }
 
-export function HeaderComponents({ titleButtom, onPress }:HeaderComponentsProps) {
+export function HeaderComponents({ titleButtom, icon, onPress }:HeaderComponentsProps) {
 
 
     const styles = StyleSheet.create({
@@ -15,7 +16,8 @@ export function HeaderComponents({ titleButtom, onPress }:HeaderComponentsProps)
             width: '100%',
             height: 200,
             justifyContent: 'center',
-           
+            alignItems: 'flex-start',
+            marginBottom: -20
         },
         headerButton:{
             flexDirection: 'row',
@@ -25,21 +27,20 @@ export function HeaderComponents({ titleButtom, onPress }:HeaderComponentsProps)
             borderColor: 'white',
             borderWidth: 2,
             padding: 10,
-            width: '40%',
             borderRadius: 50
         },
         headerButtonText:{
             color: '#3629b7',
             fontSize: 20,
             fontWeight: 'semibold',
-            marginLeft: 3
+            marginLeft: 4
         },
     })
 
     return (
         <View style={styles.header}>
             <TouchableOpacity style={styles.headerButton} onPress={()=>onPress()}>
-                <AntDesign name="adduser" size={24} color="#3629b7" />
+                {icon} 
                 <Text style={styles.headerButtonText}>
                     {titleButtom}
                 </Text>

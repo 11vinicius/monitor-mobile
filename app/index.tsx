@@ -9,6 +9,7 @@ export default function Index() {
   useEffect(() => {
     function redirect() {
       setTimeout(() => router.replace("/auth.login")
+        //  setTimeout(() => router.replace("/user.create")
       , 100);
     }
     redirect()

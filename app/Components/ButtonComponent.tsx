@@ -5,8 +5,7 @@ interface IButtonComponent{
     isLoading: boolean
     onPress: () => void
 }
-
-export function ButtonComponent(props: IButtonComponent) {
+function ButtonComponent(props: IButtonComponent) {
 
     const styles = StyleSheet.create({
         container: {
@@ -36,3 +35,5 @@ export function ButtonComponent(props: IButtonComponent) {
         </TouchableOpacity>
     );
 }
+
+export default ButtonComponent
